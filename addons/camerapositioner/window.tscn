@@ -1,0 +1,131 @@
+[gd_scene load_steps=5 format=3 uid="uid://bqukbkjtnywt6"]
+
+[ext_resource type="Script" path="res://addons/camerapositioner/window.gd" id="1_ja1uq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dtugt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0m4op"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_b8c0a"]
+color = Color(0.654902, 0.654902, 0.654902, 1)
+thickness = 3
+
+[node name="window" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+script = ExtResource("1_ja1uq")
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 2
+
+[node name="General" type="TabBar" parent="TabContainer"]
+layout_mode = 2
+
+[node name="followSellect" type="Button" parent="TabContainer/General"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 104.0
+offset_right = 382.0
+offset_bottom = 163.0
+theme_override_font_sizes/font_size = 37
+toggle_mode = true
+text = "Select Current Node"
+
+[node name="Name" type="Label" parent="TabContainer/General"]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 169.0
+offset_right = 232.0
+offset_bottom = 195.0
+text = "Select a node!"
+
+[node name="shouldStart" type="CheckBox" parent="TabContainer/General"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 215.0
+offset_right = 292.0
+offset_bottom = 255.0
+theme_override_font_sizes/font_size = 23
+disabled = true
+text = "Camera Following"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TabContainer/General"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -210.0
+offset_bottom = 29.0
+grow_horizontal = 0
+theme_override_colors/default_color = Color(0.662745, 0.662745, 0.662745, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dtugt")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_0m4op")
+bbcode_enabled = true
+text = "[wave]Plugin made by FunFoxRR"
+scroll_active = false
+text_direction = 2
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="TabContainer/General"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -747.0
+offset_top = 103.0
+offset_right = -29.0
+offset_bottom = 210.0
+grow_horizontal = 0
+theme_override_colors/default_color = Color(0.662745, 0.662745, 0.662745, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dtugt")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_0m4op")
+bbcode_enabled = true
+text = "If you encounter an error that look like this:
+[color=red]● res://addons/camerapositioner/window.gd:36 - Invalid get index 'name' (on base: 'Nil').[/color]
+[color=lime]Anwser: Select a node [i]BEFORE[/i] pressing \"Select Current Node\"[/color]"
+text_direction = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="TabContainer/General"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 419.0
+offset_bottom = 71.0
+theme_override_font_sizes/normal_font_size = 45
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dtugt")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_0m4op")
+bbcode_enabled = true
+text = "[wave][rainbow freq=.3]Camera Positioner"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="HSeparator" type="HSeparator" parent="TabContainer/General"]
+layout_mode = 0
+offset_top = 64.0
+offset_right = 569.0
+offset_bottom = 97.0
+theme_override_styles/separator = SubResource("StyleBoxLine_b8c0a")
+
+[node name="Config" type="TabBar" parent="TabContainer"]
+visible = false
+layout_mode = 2
+
+[node name="CheckButton" type="CheckButton" parent="TabContainer/Config"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 371.0
+offset_bottom = 56.0
+theme_override_font_sizes/font_size = 23
+button_pressed = true
+text = "Should print warnings/info?"
+
+[connection signal="toggled" from="TabContainer/General/followSellect" to="." method="_on_follow_sellect_toggled"]
+[connection signal="toggled" from="TabContainer/General/shouldStart" to="." method="_on_should_start_toggled"]
+[connection signal="meta_clicked" from="TabContainer/General/RichTextLabel" to="." method="_on_rich_text_label_meta_clicked"]
+[connection signal="meta_clicked" from="TabContainer/General/RichTextLabel3" to="." method="_on_rich_text_label_meta_clicked"]
+[connection signal="toggled" from="TabContainer/Config/CheckButton" to="." method="_on_check_button_toggled"]
